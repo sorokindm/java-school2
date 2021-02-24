@@ -27,7 +27,9 @@
 
     <artifactId>reha-screen-ear</artifactId>
     <packaging>ear</packaging>
-
+    <properties>
+        <log4j.version>2.14.0</log4j.version>
+    </properties>
     <name>reha-screen: EAR Module</name>
 
     <url>http://wildfly.org</url>
@@ -40,7 +42,6 @@
     </licenses>
 
     <dependencies>
-
         <!-- Depend on the ejb module and war so that we can package them -->
         <dependency>
             <groupId>com.jschool</groupId>
@@ -54,4 +55,22 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <modules>
+                        <webModule>
+                            <groupId>com.jschool</groupId>
+                            <artifactId>reha-screen-web</artifactId>
+                            <contextRoot>/reha-screen</contextRoot>
+                        </webModule>
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

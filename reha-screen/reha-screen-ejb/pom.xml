@@ -41,9 +41,6 @@
 
     <dependencies>
 
-        <!-- Declare the APIs we depend on and need for compilation. All of 
-            them are provided by JBoss WildFly -->
-
         <!-- Import the EJB API, we use provided scope as the API is included in JBoss WildFly -->
         <dependency>
             <groupId>org.jboss.spec.javax.ejb</groupId>
@@ -58,27 +55,20 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Import the JPA API, we use provided scope as the API is included in JBoss WildFly -->
-        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- JSR-303 (Bean Validation) Implementation -->
         <!-- Provides portable constraints such as @Email -->
         <!-- Hibernate Validator is shipped in JBoss WildFly -->
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.spec.javax.faces</groupId>
-            <artifactId>jboss-jsf-api_2.2_spec</artifactId>
-            <version>2.2.8</version>
-            <scope>compile</scope>
+            <artifactId>jboss-jsf-api_2.3_spec</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -89,29 +79,30 @@
         <dependency>
             <groupId>javax.json</groupId>
             <artifactId>javax.json-api</artifactId>
-            <version>1.1.4</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.json.bind</groupId>
             <artifactId>javax.json.bind-api</artifactId>
-            <version>1.0</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
-            <artifactId>jaxrs-api</artifactId>
-            <version>3.0.12.Final</version>
+            <artifactId>resteasy-jsapi</artifactId>
+            <scope>provided</scope>
         </dependency>
 
-        <!-- Test scope dependencies -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
+            <groupId>org.jboss.spec.javax.jms</groupId>
+            <artifactId>jboss-jms-api_2.0_spec</artifactId>
+            <scope>provided</scope>
         </dependency>
-
-
-
+        <dependency>
+            <groupId>org.jboss.spec.javax.websocket</groupId>
+            <artifactId>jboss-websocket-api_1.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
 
@@ -121,6 +112,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ejb-plugin</artifactId>
+                <version>${version.ejb.plugin}</version>
                 <configuration>
                     <ejbVersion>3.0</ejbVersion>
                 </configuration>

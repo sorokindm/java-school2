@@ -17,29 +17,67 @@
 -->
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
                 template="/WEB-INF/templates/default.xhtml">
     <ui:define name="content">
+        <script type="text/javascript">
+            function updateListener(message, channel, event) {
+                document.getElementById('data').submit();
+            }
+        </script>
+        <f:websocket channel="update" onmessage="updateListener"/>
 
-        <h2>Events</h2>
-        <h:panelGroup rendered="#{empty events}">
-            <em>No Med Events.</em>
-        </h:panelGroup>
-        <h:dataTable var="medEvent" value="#{events}" rendered="#{not empty events}"
-                     styleClass="simpletablestyle">
-            <h:column>
-                <f:facet name="header">Starts</f:facet>
-                #{medEvent.starts}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Name</f:facet>
-                #{medEvent.patientName}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Last Name</f:facet>
-                #{medEvent.patientLastName}
-            </h:column>
-        </h:dataTable>
+        <h:form id="data">
+            <h:commandButton value="submit" rendered="false">
+                <f:ajax execute="@all" render="@all"></f:ajax>
+            </h:commandButton>
+
+            <div class="row text-center clock">
+                <strong><h:outputText value="#{medEvents.time}"/></strong>
+            </div>
+        </h:form>
+        <div class="row justify-content-center text-center">
+            <h1>Next event:</h1>
+            <div class="col-md-5 current-event">
+                <div class="card med-event m-4">
+                    <div class="card-header text-center opened-events">Time:#{medEvents.currentEvent.startsTime}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Patient:#{medEvents.currentEvent.patientName} #{medEvents.currentEvent.patientLastName}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Nurse:#{medEvents.currentEvent.nurseName} #{medEvents.currentEvent.nurseLastName}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">#{medEvents.currentEvent.status}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-5">
+                <h2>Upcoming events:</h2>
+                <ui:repeat value="#{medEvents.medEventsList}" var="event" varStatus="status">
+                    <div class="card med-event m-4">
+                        <div class="card-header text-center opened-events">Time:#{event.startsTime}</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Patient:#{event.patientName} #{event.patientLastName}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Nurse:#{event.nurseName} #{event.nurseLastName}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">#{event.status}</h6>
+                        </div>
+                    </div>
+                </ui:repeat>
+            </div>
+            <div class="col-md-5">
+                <h2>Timed out events:</h2>
+                <ui:repeat value="#{medEvents.closedEvents}" var="event" varStatus="status">
+                    <div class="card med-event m-4 closed-events">
+                        <div class="card-header text-center">Time:#{event.startsTime}</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Patient:#{event.patientName} #{event.patientLastName}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Nurse:#{event.nurseName} #{event.nurseLastName}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">#{event.status}</h6>
+                        </div>
+                    </div>
+                </ui:repeat>
+            </div>
+        </div>
+
+
     </ui:define>
 </ui:composition>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <File name="FileAppender" fileName="mylog.log" immediateFlush="false" append="false">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <File name="RehaAppender" fileName="reha.log" immediateFlush="true" append="true">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <Console name="Console" target="SYSTEM_OUT">
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="DEBUG">
+            <AppenderRef ref="FileAppender"/>
+        </Root>
+        <Logger name="com.jschool" level="ALL">
+            <AppenderRef ref="RehaAppender"/>
+        </Logger>
+    </Loggers>
+</Configuration>
