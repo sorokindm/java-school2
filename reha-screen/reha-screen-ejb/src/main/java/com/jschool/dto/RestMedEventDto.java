@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * Dto for screen rest service
+ * Dto for screen rest service. Used to load data on application startup
  */
 @Data
 public class RestMedEventDto implements Serializable {

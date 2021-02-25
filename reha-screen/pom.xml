@@ -44,13 +44,12 @@
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
             resources, i.e. build is platform dependent! -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <log4j.version>2.14.0</log4j.version>
         <!-- JBoss dependency versions -->
-        
+
         <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
 
         <!-- Define the version of the JBoss BOMs we want to import to specify tested stacks. -->
-        <version.jboss.bom>8.2.1.Final</version.jboss.bom>
+        <version.jboss.bom>18.0.0.Beta1</version.jboss.bom>
         <version.wildfly>22.0.0.Final</version.wildfly>
 
 
@@ -64,28 +63,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
-
-    <dependencies>
-        <!--Log4j-->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>${log4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-web</artifactId>
-            <version>${log4j.version}</version>
-        </dependency>
-    </dependencies>
     <dependencyManagement>
         <dependencies>
-
             <!-- Define the version of the EJB jar so that we don't need 
                 to repeat ourselves in every module -->
             <dependency>
@@ -95,7 +74,7 @@
                 <type>ejb</type>
                 <scope>compile</scope>
             </dependency>
-            
+
             <!-- Define the version of the WAR so that we don't need to repeat 
                 ourselves in every module -->
             <dependency>
@@ -106,20 +85,6 @@
                 <scope>compile</scope>
             </dependency>
 
-<!--            <dependency>-->
-<!--                <groupId>org.wildfly.bom</groupId>-->
-<!--                <artifactId>jboss-javaee-7.0-with-tools</artifactId>-->
-<!--                <version>${version.jboss.bom}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.wildfly.bom</groupId>-->
-<!--                <artifactId>jboss-javaee-7.0-with-hibernate</artifactId>-->
-<!--                <version>${version.jboss.bom}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
             <!-- https://mvnrepository.com/artifact/org.wildfly.bom/wildfly-javaee8 -->
             <dependency>
                 <groupId>org.wildfly.bom</groupId>

@@ -1,7 +1,8 @@
-package com.jschool;
+package com.jschool.jms;
 
-import com.jschool.dto.MedEventViewDto;
 import com.jschool.enums.MedEventStatus;
+import com.jschool.dto.MedEventViewDto;
+import com.jschool.MedEventsEJB;
 import com.jschool.enums.MessageType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,11 +29,12 @@ public class ScreenQueueListener implements MessageListener {
     private final Logger logger = LogManager.getLogger();
 
     @Inject
-    EventData data;
+    MedEventsEJB data;
 
     @Override
     public void onMessage(Message message) {
         int type;
+        logger.info("Recieved message from mq");
         try {
             type = message.getIntProperty("type");
         } catch (JMSException e) {

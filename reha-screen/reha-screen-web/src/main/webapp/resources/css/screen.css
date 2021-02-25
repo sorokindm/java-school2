@@ -15,10 +15,22 @@ body {
 .current-event {
 
 }
-.opened-events {
+.opened-event {
 
 }
-.closed-events {
+.closed-event {
 
 }
 
+.current-event-header {
+  font-size: 30px;
+  color:forestgreen;
+}
+.opened-event-header {
+  font-size: 30px;
+  color:forestgreen;
+}
+.closed-event-header {
+  font-size: 30px;
+  color:red;
+}

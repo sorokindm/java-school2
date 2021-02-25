@@ -1,12 +1,19 @@
 package com.jschool.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Dto to store medEvents data
+ */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class MedEventViewDto implements Serializable, Comparable<MedEventViewDto> {
     private int idMedEvent;
 
